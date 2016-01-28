@@ -43,9 +43,3 @@ describe('Board', function() {
     expect(testBoard.checkWin()).to.equal(true);
   });
 });
-
-// Player, Space, Board, Game
-
-// create a board, assign 9 spaces individual values (known coordinates)
-//
-// board should know if there are 3 X or O in a row

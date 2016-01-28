@@ -91,8 +91,10 @@ Game.prototype.nextTurn = function() {
 }
 
 Game.prototype.mark = function(x,y) {
-  this.board.getSpace(x,y).mark(this.currentPlayer.id);
-  this.nextTurn();
+  if(this.board.getSpace(x,y).markedAs.length <= 0) {
+    this.board.getSpace(x,y).mark(this.currentPlayer.id);
+    this.nextTurn();
+  }
 }
 
 Game.prototype.getSpaces = function() {
