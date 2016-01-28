@@ -45,27 +45,27 @@ Board.prototype.checkWin = function() {
     if(this.spaces[1][x].markedAs.length > 0) { // space 1,1 is marked
       if(this.spaces[2][x].markedAs === this.spaces[1][x].markedAs)
         if(this.spaces[3][x].markedAs === this.spaces[1][x].markedAs)
-          win=true;
+          win=this.spaces[1][x].markedAs;
     }
   }
   for(var y = 1;y<=3;y++) {
     if(this.spaces[y][1].markedAs.length > 0) {
       if(this.spaces[y][2].markedAs === this.spaces[y][1].markedAs)
         if(this.spaces[y][3].markedAs === this.spaces[y][1].markedAs)
-          win=true;
+          win=this.spaces[y][1].markedAs;
     }
   }
 
   if(this.spaces[2][2].markedAs.length > 0) {
       if(this.spaces[1][1].markedAs === this.spaces[2][2].markedAs)
         if(this.spaces[3][3].markedAs === this.spaces[2][2].markedAs)
-          win=true;
+          win=this.spaces[2][2].markedAs;
   }
 
   if(this.spaces[2][2].markedAs.length > 0) {
       if(this.spaces[3][1].markedAs === this.spaces[2][2].markedAs)
         if(this.spaces[1][3].markedAs === this.spaces[2][2].markedAs)
-          win=true;
+          win=this.spaces[2][2].markedAs;
   }
 
   return win;
@@ -104,15 +104,28 @@ Game.prototype.getSpaces = function() {
   return output;
 }
 
-$(document).ready(function() {
-  var game = new Game();
-  game.mark(3,3);
-  game.mark(1,1);
-  $('.board').html(game.getSpaces());
+Game.prototype.isOver = function() {
+  return this.board.checkWin();
+}
 
+function play(game) {
+  $('.board').html(game.getSpaces());
+  $('.turn').text(game.whoseTurn()+"'s turn!");
   $('.board div').each(function() {
     $(this).click(function() {
-      alert($(this).attr('y'));
-    })
-  })
-})
+      game.mark($(this).attr('x'), $(this).attr('y'));
+      if(game.isOver()) {
+        $(".turn").hide();
+        $(".winner").text(game.isOver() + " WINS!");
+        $('.board').html(game.getSpaces());
+      } else {
+        play(game);
+      }
+    });
+  });
+}
+
+$(document).ready(function() {
+  var game = new Game();
+  play(game);
+});

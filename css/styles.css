@@ -1,16 +1,41 @@
+body {
+  font-family: "Arial";
+}
+
+h1 {
+  text-align: center;
+  color: #4ce0d2;
+}
+
 .board {
   width:300px;
   margin:auto;
-  border:1px solid black;
 }
 
 .space {
   width:98px;
   height:98px;
-  border:1px solid red;
+  border:1px solid #ed6a5a;
   display: block;
-  background: maroon;
+  background: #e6ebe0;
   float:left;
   font-size:98px;
   text-align: center;
+  color: #ed6a5a;
+}
+
+.turn {
+  font-size:3em;
+  clear:both;
+  text-align: center;
+  color: #4ce0d2;
+}
+
+.winner {
+  font-size:5em;
+  text-decoration:none;
+  display:block;
+  clear:both;
+  text-align: center;
+  color: #4ce0d2;
 }
