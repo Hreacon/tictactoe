@@ -1,0 +1,16 @@
+.board {
+  width:300px;
+  margin:auto;
+  border:1px solid black;
+}
+
+.space {
+  width:98px;
+  height:98px;
+  border:1px solid red;
+  display: block;
+  background: maroon;
+  float:left;
+  font-size:98px;
+  text-align: center;
+}
