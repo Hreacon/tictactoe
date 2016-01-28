@@ -15,23 +15,23 @@ function Player(id) {
 
 function Board() {
   this.spaces = [];
-  for(var x=1;x<=3;x++){
-    this.spaces[x] = [];
-    for(var y=1;y<=3;y++) {
-      this.spaces[x][y] = new Space(x,y);
+  for(var y=1;y<=3;y++){
+    this.spaces[y] = [];
+    for(var x=1;x<=3;x++) {
+      this.spaces[y][x] = new Space(x,y);
     }
   }
 }
 
 Board.prototype.getSpace = function(x,y) {
-  return this.spaces[x][y];
+  return this.spaces[y][x];
 }
 
 Board.prototype.getAllSpaces = function() {
   var output = [];
-  for(var x=1;x<=3;x++) {
-    for(var y=1;y<=3;y++) {
-      output.push(this.spaces[x][y]);
+  for(var y=1;y<=3;y++) {
+    for(var x=1;x<=3;x++) {
+      output.push(this.spaces[y][x]);
     }
   }
   return output;
@@ -41,17 +41,17 @@ Board.prototype.checkWin = function() {
   // get the first space
   // check adjacent spaces
   var win = false;
-  for(var y = 1;y<=3;y++) {
-    if(this.spaces[1][y].markedAs.length > 0) { // space 1,1 is marked
-      if(this.spaces[2][y].markedAs === this.spaces[1][y].markedAs)
-        if(this.spaces[3][y].markedAs === this.spaces[1][y].markedAs)
+  for(var x = 1;x<=3;x++) {
+    if(this.spaces[1][x].markedAs.length > 0) { // space 1,1 is marked
+      if(this.spaces[2][x].markedAs === this.spaces[1][x].markedAs)
+        if(this.spaces[3][x].markedAs === this.spaces[1][x].markedAs)
           win=true;
     }
   }
-  for(var x = 1;x<=3;x++) {
-    if(this.spaces[x][1].markedAs.length > 0) {
-      if(this.spaces[x][2].markedAs === this.spaces[x][1].markedAs)
-        if(this.spaces[x][3].markedAs === this.spaces[x][1].markedAs)
+  for(var y = 1;y<=3;y++) {
+    if(this.spaces[y][1].markedAs.length > 0) {
+      if(this.spaces[y][2].markedAs === this.spaces[y][1].markedAs)
+        if(this.spaces[y][3].markedAs === this.spaces[y][1].markedAs)
           win=true;
     }
   }
@@ -112,7 +112,7 @@ $(document).ready(function() {
 
   $('.board div').each(function() {
     $(this).click(function() {
-      game.mark
+      alert($(this).attr('y'));
     })
   })
 })
