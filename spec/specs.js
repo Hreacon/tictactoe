@@ -7,8 +7,19 @@ describe('Space', function () {
     var testSpace = new Space(1,2);
     expect(testSpace.x).to.equal(1);
   });
+  it('knows which player marks it', function() {
+    var testSpace = new Space(2,2);
+    testSpace.mark('X');
+    expect(testSpace.markedAs).to.equal('X');
+  })
 });
 
+describe('Player', function() {
+  it('tells you which player it is', function() {
+    var testPlayer = new Player('X');
+    expect(testPlayer.id).to.equal('X');
+  })
+})
 
 
 
